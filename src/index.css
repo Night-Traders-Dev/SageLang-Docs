@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@500;600;700;800&display=swap');
 
 :root {
-  --bg-color: #0b0f19;
-  --bg-color-alt: #13192b;
-  --bg-color-dim: rgba(19, 25, 43, 0.5);
+  --bg-color: #050505;
+  --bg-color-alt: #111111;
+  --bg-color-dim: rgba(17, 17, 17, 0.6);
   
-  --primary: #6366f1;
-  --primary-hover: #818cf8;
-  --primary-dim: rgba(99, 102, 241, 0.1);
+  --primary: #00ffcc;
+  --primary-hover: #33ffdb;
+  --primary-dim: rgba(0, 255, 204, 0.1);
   
-  --secondary: #ec4899;
-  --secondary-hover: #f472b6;
-  --secondary-dim: rgba(236, 72, 153, 0.1);
+  --secondary: #b026ff;
+  --secondary-hover: #c45cff;
+  --secondary-dim: rgba(176, 38, 255, 0.1);
   
-  --accent: #14b8a6;
-  --accent-dim: rgba(20, 184, 166, 0.1);
+  --accent: #ff2a5f;
+  --accent-dim: rgba(255, 42, 95, 0.1);
   
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-dark: #0f172a;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --text-dark: #000000;
   
-  --border: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.15);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-highlight: rgba(0, 255, 204, 0.4);
   
-  --glass-bg: rgba(15, 23, 42, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.05);
-  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-bg: rgba(10, 10, 10, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 255, 204, 0.1);
   
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Outfit', sans-serif;
@@ -45,6 +45,10 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 255, 204, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(176, 38, 255, 0.08), transparent 25%);
+  background-attachment: fixed;
   color: var(--text-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
