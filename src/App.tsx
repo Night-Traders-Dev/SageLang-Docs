@@ -216,25 +216,22 @@ function App() {
             </div>
             <span className="logo-text">SageLang</span>
           </div>
-          <div className="nav-links">
+                    <div className="nav-links">
             <span className="nav-link" onClick={() => setActiveSection('getting_started')}>Documentation</span>
-            <a href="https://github.com/Night-Traders-Dev/SageDOS" className="nav-link github-btn" target="_blank" rel="noreferrer">
-              <Globe size={16} /> SageDOS
-            </a>
             <a href="https://github.com/Night-Traders-Dev/SageLang" className="nav-link github-btn" target="_blank" rel="noreferrer">
               <Globe size={16} /> GitHub
             </a>
           </div>
         </header>
 
-        <main className="landing-content">
+                <main className="landing-content">
           <div className="glow-sphere sphere-1"></div>
           <div className="glow-sphere sphere-2"></div>
           
           <section className="hero">
-            <div className="hero-badge">v1.0.0 Release</div>
-            <h1 className="hero-title">The Ultimate DOS <br/><span className="gradient-text">Batch Engine</span></h1>
-            <p className="hero-subtitle">Reimagining MS-DOS Batch 4.0 with extreme performance, modern type-safety, and seamless SageVM portability. Completely written in pure SageLang.</p>
+            <div className="hero-badge">v3.9.6 Release</div>
+            <h1 className="hero-title">The Next Generation of <br/><span className="gradient-text">Systems Programming</span></h1>
+            <p className="hero-subtitle">A high-performance language combining Python's elegant syntax with C's absolute control. Experience zero-overhead abstractions, advanced memory management, and 10+ execution backends.</p>
             <div className="hero-buttons">
               <button className="btn btn-primary" onClick={() => setActiveSection('getting_started')}>
                 Explore Documentation <ArrowRight size={18} />
@@ -250,29 +247,29 @@ function App() {
               <div className="feature-icon-wrapper bg-primary-dim">
                 <Zap className="text-primary" size={28} />
               </div>
-              <h3>Native Performance</h3>
-              <p>Compiled directly to native C/LLVM via the SageLang compiler for blazing-fast script execution with minimal memory overhead.</p>
+              <h3>Blazing Fast</h3>
+              <p>Compile to native machine code via C, LLVM IR, or direct Assembly for maximum execution speed.</p>
             </div>
             <div className="feature-card glass-card">
               <div className="feature-icon-wrapper bg-secondary-dim">
                 <Code className="text-secondary" size={28} />
               </div>
-              <h3>100% Pure SageLang</h3>
-              <p>A full lexer, AST parser, and recursive tree-walk interpreter built from scratch in the beautiful Sage systems language.</p>
+              <h3>Pythonic Syntax</h3>
+              <p>Indentation-based blocks and dynamic-feeling APIs provide an elegant, productive developer experience.</p>
             </div>
             <div className="feature-card glass-card">
               <div className="feature-icon-wrapper bg-accent-dim">
                 <Cpu className="text-accent" size={28} />
               </div>
-              <h3>SageVM Ready</h3>
-              <p>Seamlessly compile to SGVM bytecode and run batch scripts on bare-metal kernels, bootloaders, and embedded systems.</p>
+              <h3>Ten Execution Backends</h3>
+              <p>Supports C, LLVM IR, Native Assembly, AST Interpreter, Bytecode VM, JIT, AOT, and Kotlin/Android.</p>
             </div>
             <div className="feature-card glass-card">
               <div className="feature-icon-wrapper bg-primary-dim">
                 <Globe className="text-primary" size={28} />
               </div>
-              <h3>SageDOS Core</h3>
-              <p>Serves as the foundational COMMAND.COM shell for SageDOS, managing the environment, boot scripts, and system tools natively.</p>
+              <h3>Batteries Included</h3>
+              <p>Ships with 100+ native modules spanning ML, Vulkan Graphics, TCP Networking, Blockchain, and bare-metal OS building.</p>
             </div>
           </section>
         </main>
@@ -289,11 +286,12 @@ function App() {
           </div>
           <span className="logo-text">SageLang</span>
         </div>
-        <div className="nav-links">
-          <span className="nav-link active">Docs</span>
-          <a href="https://github.com/Night-Traders-Dev/SageDOS" className="nav-link" target="_blank" rel="noreferrer">SageDOS</a>
-          <a href="https://github.com/Night-Traders-Dev/SageLang" className="nav-link" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
+                  <div className="nav-links">
+            <span className="nav-link" onClick={() => setActiveSection('getting_started')}>Documentation</span>
+            <a href="https://github.com/Night-Traders-Dev/SageLang" className="nav-link github-btn" target="_blank" rel="noreferrer">
+              <Globe size={16} /> GitHub
+            </a>
+          </div>
       </header>
 
       <div className="docs-body">
