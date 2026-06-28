@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Terminal, Code, Cpu, ArrowRight, Zap, Globe, CheckCircle } from 'lucide-react';
+import { Terminal, Code, Cpu, Layers, Globe, Zap, CheckCircle, ArrowRight } from 'lucide-react';
 import './index.css';
 
 const sections = {
@@ -150,36 +150,55 @@ print(result)`}</code></pre>
     )
   },
   ecosystem: {
-    title: 'Standard Library',
+    title: 'Ecosystem',
     icon: <Globe size={18} />,
     content: (
       <div className="markdown-body fade-in">
-        <h1 className="gradient-text">The Standard Library</h1>
-        <p className="lead-text">SageLang comes with batteries included. Our standard library handles everything from file I/O to Neural Networks.</p>
-        
-        <div className="timeline">
-          <div className="timeline-item">
-            <div className="timeline-icon">OS</div>
-            <div className="timeline-content">
-              <h3>Operating System <code>(lib/os/)</code></h3>
-              <p>Provides bindings for file system manipulation, environment variables, sub-processes, threading, and even bare-metal UEFI access.</p>
+        <h1 className="gradient-text">Ecosystem & Libraries</h1>
+        <p className="lead-text">SageLang ships with an incredibly rich ecosystem of 15 built-in core libraries (<code>sagelang-lib-*</code>), offering everything from deep hardware integration to high-level UI composition, Machine Learning, and Blockchain primitives.</p>
+
+        <div className="card-highlight">
+          <h2>Core Standard Libraries</h2>
+          <ul>
+            <li><strong><code className="text-primary">sagelang-lib-std</code></strong>: 23 general-purpose modules including <code>regex</code>, <code>datetime</code>, <code>log</code>, <code>argparse</code>, <code>process</code>, <code>db</code> (in-memory CRUD), and powerful concurrency primitives (<code>atomic</code>, <code>channel</code>, <code>threadpool</code>, <code>rwlock</code>).</li>
+            <li><strong><code className="text-primary">sagelang-lib-os</code></strong>: 52 bare-metal development modules for OS/kernel building. Includes <code>fat</code>, <code>elf</code>, <code>pe</code>, <code>uefi</code>, <code>acpi</code>, <code>paging</code>, and <code>idt</code> management.</li>
+            <li><strong><code className="text-primary">sagelang-lib-metal</code></strong>: Low-level hardware abstraction layer. Provides direct GPIO, Timer, Serial, IRQ, and basic VGA support for embedded systems.</li>
+            <li><strong><code className="text-primary">sagelang-lib-gc</code></strong>: Advanced garbage collection utilities, offering implementations like the Immix mark-region collector for fine-grained performance tuning.</li>
+          </ul>
+        </div>
+
+        <div className="grid-list">
+          <div className="grid-item">
+            <Cpu className="text-primary" size={24} />
+            <div>
+              <h3>AI & Machine Learning</h3>
+              <p><strong><code>sagelang-lib-ml</code></strong> offers 10 PyTorch-style modules (<code>tensor</code>, <code>nn</code>, <code>optim</code>, <code>loss</code>). <strong><code>sagelang-lib-chat</code></strong> provides a conversational chatbot framework (sessions, personas), enabling sophisticated LLM integrations.</p>
             </div>
           </div>
-          <div className="timeline-item">
-            <div className="timeline-icon">ML</div>
-            <div className="timeline-content">
-              <h3>Machine Learning <code>(lib/ml/)</code></h3>
-              <p>Native tensor operations, neural network layers, and GPU/SIMD acceleration via cuBLAS and NEON for on-device inference.</p>
+          <div className="grid-item">
+            <Layers className="text-secondary" size={24} />
+            <div>
+              <h3>Graphics & CUDA</h3>
+              <p><strong><code>sagelang-lib-graphics</code></strong> ships with 18 GPU modules supporting Vulkan, OpenGL, PBR, and Immediate-mode UI. <strong><code>sagelang-lib-cuda</code></strong> offers native CUDA device abstraction, memory pooling, and kernel execution plans.</p>
             </div>
           </div>
-          <div className="timeline-item">
-            <div className="timeline-icon">NET</div>
-            <div className="timeline-content">
-              <h3>Networking <code>(lib/net/)</code></h3>
-              <p>TCP/UDP sockets, HTTP servers, and async networking primitives for building highly concurrent web services.</p>
+          <div className="grid-item">
+            <Globe className="text-accent" size={24} />
+            <div>
+              <h3>Networking & Crypto</h3>
+              <p><strong><code>sagelang-lib-net</code></strong> handles TCP/HTTP servers, WebSockets, DNS, and URLs. <strong><code>sagelang-lib-crypto</code></strong> provides SHA-256, HMAC, PBKDF2, and stream ciphers like RC4.</p>
             </div>
           </div>
         </div>
+
+        <h2>Specialized Tooling & Domain Libraries</h2>
+        <ul>
+          <li><strong><code className="text-primary">sagelang-lib-rich</code></strong>: A pure Sage port of Python's <code>rich</code> library. Brings beautiful console output, TrueColor text, layout engines, and syntax highlighting directly to the terminal.</li>
+          <li><strong><code className="text-primary">sagelang-lib-transpiler</code></strong>: The foundation of Sage's multi-language toolchain, offering AST parsers and extensible language emitters (e.g., Python and Lily).</li>
+          <li><strong><code className="text-primary">sagelang-lib-blockchain</code></strong>: Core blockchain framework featuring PoW/PoA consensus engines, smart contract management, Merkle trees, and cryptographic wallets.</li>
+          <li><strong><code className="text-primary">sagelang-lib-mips</code></strong>: Comprehensive MIPS architecture support, including instruction definitions, an assembler, a disassembler, and a lightweight MIPS emulator.</li>
+          <li><strong><code className="text-primary">sagelang-lib-android</code></strong>: Compose mobile applications natively in Sage. Maps SageLang constructs to native Android APIs, including composable UIs and Vulkan contexts.</li>
+        </ul>
       </div>
     )
   }
