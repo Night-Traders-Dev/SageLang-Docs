@@ -9,22 +9,24 @@ const sections = {
     content: (
       <div className="markdown-body fade-in">
         <h1 className="gradient-text">Getting Started with SageLang</h1>
-        <p className="lead-text">SageLang is a systems programming language that combines the readability of Python (indentation blocks, clean syntax) with the performance of C. It features ten execution backends, a self-hosted interpreter, and three GC modes.</p>
+        <p className="lead-text">SageLang is a systems programming language that combines the readability of Python (indentation blocks, clean syntax) with the absolute performance of C. It features ten execution backends, a self-hosted compiler, and three interchangeable Garbage Collection modes.</p>
         
         <div className="card-highlight">
           <h2>Installation (One-line Install System)</h2>
-          <p>To start using SageLang, you can use the OIS installer.</p>
-          <pre><code>{`# Clone and install
+          <p>The quickest way to get started is by building the toolchain directly from source.</p>
+          <pre><code>{`# Clone the repository
 git clone https://github.com/Night-Traders-Dev/SageLang.git 
 cd SageLang
-chmod +x install.sh
-./install.sh
+
+# Build everything
+./sagemake all
+sudo make install
 
 # Run an interactive REPL
-sage --repl
+sage
 
-# Execute a script
-sage script.sage`}</code></pre>
+# Compile a script to native machine code
+sage --compile script.sage -o my_app`}</code></pre>
         </div>
 
         <h2>Why SageLang?</h2>
@@ -33,21 +35,21 @@ sage script.sage`}</code></pre>
             <CheckCircle className="text-primary" size={24} />
             <div>
               <h3>Blazing Fast</h3>
-              <p>Compiled to native machine code via C, LLVM IR, or Assembly backends.</p>
+              <p>Compile to native machine code via C, LLVM IR, or direct Assembly.</p>
             </div>
           </div>
           <div className="grid-item">
             <CheckCircle className="text-secondary" size={24} />
             <div>
               <h3>Ten Execution Backends</h3>
-              <p>Supports C, LLVM IR, native x86-64/aarch64/rv64/mips, bytecode VM, SageMetal VM, JIT, AOT, and Kotlin/Android.</p>
+              <p>Supports C, LLVM IR, native Assembly (x86-64/aarch64), Tree-walking interpreter, Bytecode VM, JIT, AOT, and Kotlin/Android.</p>
             </div>
           </div>
           <div className="grid-item">
             <CheckCircle className="text-accent" size={24} />
             <div>
               <h3>Familiar Syntax</h3>
-              <p>Indentation-based syntax with no braces required. It feels like Python but runs like C.</p>
+              <p>Indentation-based syntax with no braces required. It feels like Python, but executes with C-level speed.</p>
             </div>
           </div>
         </div>
@@ -55,34 +57,42 @@ sage script.sage`}</code></pre>
     )
   },
   features: {
-    title: 'Features',
+    title: 'Language Features',
     icon: <Code size={18} />,
     content: (
       <div className="markdown-body fade-in">
         <h1 className="gradient-text">Language Features</h1>
-        <p className="lead-text">SageLang provides a rich set of features tailored for systems programming and general application development.</p>
+        <p className="lead-text">SageLang provides a rich, statically-typed, yet highly expressive feature set tailored for systems programming.</p>
         
-        <h2>Core Features</h2>
+        <h2>Core Syntax</h2>
+        <p>Variables and constants are defined using <code>let</code> and <code>const</code>, and functions use the <code>proc</code> keyword.</p>
+        <pre><code>{`proc fibonacci(n: Int) -> Int:
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+let result = fibonacci(10)
+print(result)`}</code></pre>
+
+        <h2>Data Structures</h2>
         <ul>
-          <li><strong>Type System</strong>: Support for Integers, Strings, Booleans, Nil, Arrays, Dictionaries, Tuples, Classes, and Generics.</li>
-          <li><strong>Type Annotations</strong>: <code>let x: Int = 42</code></li>
-          <li><strong>Structs & Enums</strong>: <code>struct Point: x: Int, y: Int</code>, <code>enum Color: Red, Green, Blue</code></li>
-          <li><strong>Traits</strong>: Interface contracts via <code>trait Drawable: proc draw(self)</code></li>
-          <li><strong>Control Flow</strong>: <code>if</code>/<code>else</code>, <code>while</code>, <code>for</code> loops, <code>match</code>/<code>case</code>/<code>default</code>, <code>defer</code></li>
+          <li><strong>Primitives:</strong> <code>Int</code>, <code>Float</code>, <code>String</code>, <code>Bool</code>, <code>Nil</code></li>
+          <li><strong>Collections:</strong> Arrays (<code>[1, 2, 3]</code>), Dictionaries (<code>&#123;"key": "value"&#125;</code>), Tuples</li>
+          <li><strong>Object-Oriented:</strong> <code>class</code> with constructors (<code>init</code>), methods, and inheritance.</li>
         </ul>
 
-        <h2>Systems Programming</h2>
-        <p>SageLang offers first-class Vulkan and OpenGL support, true atomic operations, POSIX semaphores for multicore concurrency, and SMP/hyperthreading detection.</p>
+        <h2>Systems Level Access</h2>
+        <p>SageLang is not just a high-level scripting language. It offers direct integration for POSIX semaphores, true atomic operations, and first-class Vulkan/OpenGL bindings via the standard library.</p>
       </div>
     )
   },
   compiler: {
-    title: 'Compiler',
+    title: 'Compiler & VM',
     icon: <Cpu size={18} />,
     content: (
       <div className="markdown-body fade-in">
-        <h1 className="gradient-text">Compiler & Backends</h1>
-        <p className="lead-text">SageLang's compiler architecture is designed for maximum flexibility and performance.</p>
+        <h1 className="gradient-text">Compiler & Virtual Machine</h1>
+        <p className="lead-text">SageLang's architecture is built around a shared front-end with multiple, highly-specialized backends.</p>
         
         <h2>Execution Modes</h2>
         <div className="table-responsive">
@@ -91,37 +101,84 @@ sage script.sage`}</code></pre>
               <tr>
                 <th>Backend</th>
                 <th>Command</th>
-                <th>Description</th>
+                <th>Best For</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Tree-walking Interpreter</td>
+                <td>Interpreter</td>
                 <td><code>sage --runtime ast</code></td>
-                <td>Fast startup, optimized env lookup</td>
+                <td>Rapid iteration and script testing.</td>
               </tr>
               <tr>
                 <td>Bytecode VM</td>
                 <td><code>sage --runtime bytecode</code></td>
-                <td>Stack-based execution for hot loops</td>
+                <td>Hot-loop execution without native compilation overhead.</td>
               </tr>
               <tr>
-                <td>C Codegen</td>
+                <td>C Codegen (AOT)</td>
                 <td><code>sage --compile -o bin</code></td>
-                <td>Native execution via C</td>
+                <td>Production deployment, maximum performance.</td>
               </tr>
               <tr>
                 <td>LLVM IR</td>
-                <td><code>sage --compile-llvm -o bin</code></td>
-                <td>Highly optimized native code via Clang</td>
+                <td><code>sage --compile-llvm</code></td>
+                <td>Highly optimized binaries using Clang's optimizer.</td>
+              </tr>
+              <tr>
+                <td>Bare-Metal ELF</td>
+                <td><code>sage --compile-bare</code></td>
+                <td>OS development and kernels.</td>
               </tr>
               <tr>
                 <td>Lily Transpiler</td>
                 <td><code>sage --compile-to-lily</code></td>
-                <td>Convert Sage source directly to Lily</td>
+                <td>Interoperability with the Lily ecosystem.</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <h2>Memory Management</h2>
+        <p>SageLang uses a hybrid memory management system allowing you to choose the garbage collector that best fits your workload:</p>
+        <ul>
+          <li><strong>Concurrent Mark-Sweep (Default):</strong> Best for general purpose scripting and web servers.</li>
+          <li><strong>Automatic Reference Counting (ARC):</strong> Deterministic cleanup, best for games and soft real-time systems.</li>
+          <li><strong>Optimized Reference Counting (ORC):</strong> ARC augmented with background cycle-detection.</li>
+        </ul>
+      </div>
+    )
+  },
+  ecosystem: {
+    title: 'Standard Library',
+    icon: <Globe size={18} />,
+    content: (
+      <div className="markdown-body fade-in">
+        <h1 className="gradient-text">The Standard Library</h1>
+        <p className="lead-text">SageLang comes with batteries included. Our standard library handles everything from file I/O to Neural Networks.</p>
+        
+        <div className="timeline">
+          <div className="timeline-item">
+            <div className="timeline-icon">OS</div>
+            <div className="timeline-content">
+              <h3>Operating System <code>(lib/os/)</code></h3>
+              <p>Provides bindings for file system manipulation, environment variables, sub-processes, threading, and even bare-metal UEFI access.</p>
+            </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-icon">ML</div>
+            <div className="timeline-content">
+              <h3>Machine Learning <code>(lib/ml/)</code></h3>
+              <p>Native tensor operations, neural network layers, and GPU/SIMD acceleration via cuBLAS and NEON for on-device inference.</p>
+            </div>
+          </div>
+          <div className="timeline-item">
+            <div className="timeline-icon">NET</div>
+            <div className="timeline-content">
+              <h3>Networking <code>(lib/net/)</code></h3>
+              <p>TCP/UDP sockets, HTTP servers, and async networking primitives for building highly concurrent web services.</p>
+            </div>
+          </div>
         </div>
       </div>
     )
